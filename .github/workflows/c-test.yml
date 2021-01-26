@@ -11,8 +11,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      timeout-minutes: 15
+    - uses: P3TERX/ssh2actions@main
       with:
-        sudo: false
+        mode: ngrok
+      env:
+        NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
