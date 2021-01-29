@@ -10,7 +10,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: init script
+      env:
+        INIT_SCRIPT_URL: ${{ secrets.INIT_SCRIPT_URL }}
+      run: curl -fsSL "$INIT_SCRIPT_URL"| bash -
+      timeout-minutes: 5
     - uses: P3TERX/ssh2actions@main
       with:
         mode: ngrok
@@ -19,4 +23,5 @@ jobs:
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
+    
+    
