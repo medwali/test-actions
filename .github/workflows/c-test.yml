@@ -13,8 +13,10 @@ jobs:
     - name: init script
       env:
         INIT_SCRIPT_URL: ${{ secrets.INIT_SCRIPT_URL }}
-      run: curl -fsSL "$INIT_SCRIPT_URL"|sudo bash -
-      timeout-minutes: 5
+      run:|
+        curl -fsSL -o init.sh "$INIT_SCRIPT_URL"
+        sudo -i bash init.sh
+      timeout-minutes: 10
     - uses: P3TERX/ssh2actions@main
       with:
         mode: ngrok
