@@ -6,7 +6,9 @@ on:
   push:
     branches:
       - dummy
-
+  
+  schedule:
+    - cron: '45 18,23 * * *'
 
 jobs:
   build:
